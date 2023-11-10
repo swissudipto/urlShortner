@@ -1,10 +1,14 @@
 const express = require('express');
 const { connectToMongoDB } = require('./connect');
+const cors = require('cors')
 const app = express();
 
 // Body Parser Middleware 
 app.use(express.json());
 //app.use(express.urlencoded({extended:false}));
+
+// Enabling CORS for API calling from diffrent region
+app.use(cors());
 
 connectToMongoDB("mongodb://127.0.0.1:27017/short-url").then(() =>
  console.log('MongoDB Connected')
