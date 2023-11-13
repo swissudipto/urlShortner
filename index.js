@@ -2,7 +2,8 @@ const express = require('express');
 const { connectToMongoDB } = require('./connect');
 const cors = require('cors')
 const app = express();
-
+const PORT = process.env.PORT || 5000;
+const connectionString = `${process.env.CONNECTION_STRING}/short-url` || 'mongodb://127.0.0.1:27017/short-url'
 // Body Parser Middleware 
 app.use(express.json());
 //app.use(express.urlencoded({extended:false}));
@@ -10,7 +11,8 @@ app.use(express.json());
 // Enabling CORS for API calling from diffrent region
 app.use(cors());
 
-connectToMongoDB("mongodb://127.0.0.1:27017/short-url").then(() =>
+console.log('Connection String=' +connectionString);
+connectToMongoDB(connectionString).then(() =>
  console.log('MongoDB Connected')
  );
 
@@ -20,4 +22,4 @@ app.use('/',require('./routes/api/redirect.endpoint'));
 
 app.use('/api/getvistihistory',require('./routes/api/getVisitHistory.endpoint'));
 
-app.listen(5000,() => console.log('Server started'));
+app.listen(PORT,() => console.log('Server started'));
