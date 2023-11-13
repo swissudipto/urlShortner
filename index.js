@@ -11,6 +11,12 @@ app.use(express.urlencoded({extended:false}));
 // Enabling CORS for API calling from diffrent region
 app.use(cors());
 
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+  });
+
 console.log('Connection String=' +connectionString);
 connectToMongoDB(connectionString).then(() =>
  console.log('MongoDB Connected')
