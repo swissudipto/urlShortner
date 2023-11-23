@@ -18,7 +18,7 @@ router.get("/:shortId", async (req, res) => {
     }
   );
   console.log('Entry'+ entry + 'shortid'+ req.params[1]);
-  res.redirect(entry.redirectURL);
+  res.redirect(/*entry.redirectURL*/'');
 });
 
 module.exports = router;

@@ -18,7 +18,7 @@ app.use(function(req, res, next) {
   });
 
 console.log('Connection String=' +connectionString);
-connectToMongoDB(connectionString).then(() =>
+connectToMongoDB('mongodb+srv://sbose562:123@cluster0.1wkvows.mongodb.net/short-url').then(() =>
  console.log('MongoDB Connected')
  );
 
@@ -27,5 +27,9 @@ app.use('/api/shortner',require('./routes/api/shortner.endpoint'));
 app.use('/',require('./routes/api/redirect.endpoint'));
 
 app.use('/api/getvistihistory',require('./routes/api/getVisitHistory.endpoint'));
+
+app.get('/',async(req,res)=>{
+    return res.json("Hello World"+connectionString+" MongoURL: "+process.env.CONNECTION_STRING+" PORT: "+process.env.PORT);
+})
 
 app.listen(PORT,() => console.log('Server started'));
