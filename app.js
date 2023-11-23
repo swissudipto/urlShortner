@@ -18,7 +18,7 @@ app.use(function(req, res, next) {
   });
 
 console.log('Connection String=' +connectionString);
-connectToMongoDB('mongodb+srv://sbose562:123@cluster0.1wkvows.mongodb.net/short-url').then(() =>
+connectToMongoDB(connectionString).then(() =>
  console.log('MongoDB Connected')
  );
 
